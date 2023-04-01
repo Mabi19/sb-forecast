@@ -1,0 +1,114 @@
+@use "sass:list";
+
+$panel-states: "sun", "rain", "thunderstorm";
+
+.panel {
+    padding: 8px;
+    border-bottom: 1px solid #bfcad3;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.panel-content {
+    flex-grow: 1;
+}
+
+.panel-icon {
+    height: calc(2.5rem);
+    image-rendering: pixelated;
+}
+
+.panel-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.panel-timing {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+/* phone: always display relative on a separate line */
+@media (max-width: 600px) {
+    .panel-timing {
+        flex-flow: column nowrap;
+    }
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #909090;
+    overflow: hidden;
+    /* the progress bar should only be visible on the top panel */
+    display: none;
+}
+
+.progress-bar-fill {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(var(--amount));
+    transform-origin: 0% 0%;
+    background-color: rgb(120, 230, 95);
+}
+
+#current .panel .progress-bar {
+    display: block;
+}
+
+
+@each $state in $panel-states {
+    .collapse-#{$state} .panel.#{$state} {
+        // properties for collapsed panels
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        gap: .5rem;
+        white-space: nowrap;
+
+        // properties for children of collapsed panels
+
+        .panel-title {
+            font-size: 1rem;
+        }
+
+        .panel-icon {
+            height: 1rem;
+        }
+
+        .panel-content {
+            display: contents;
+        }
+
+        .panel-timing {
+            display: contents;
+            // these are technically not necessary but whatever
+            flex-flow: unset;
+            justify-content: unset;
+        }
+
+        /* phone: hide daterange */
+
+        @media (max-width: 600px) {
+            .panel-timing-daterange {
+                display: none;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .panel-timing-relative::before {
+                content: "(";
+            }
+
+            .panel-timing-relative::after {
+                content: ")";
+            }
+        }
+    }
+}
+

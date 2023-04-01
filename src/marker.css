@@ -1,0 +1,110 @@
+.marker-box {
+    display: block;
+    width: 8px;
+}
+
+.marker {
+    margin-left: -10px;
+
+    position: absolute;
+    top: var(--top);
+    height: calc(var(--bottom) - var(--top));
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.marker.spooky {
+    border-left: 8px solid orange;
+}
+
+.marker.fishing {
+    border-left: 8px solid #80c2dd;
+}
+
+.marker.overlap {
+    border-image: url("./assets/marker-stripes.svg") 0 0 0 40% / 0 0 0 8px / 0px repeat repeat;
+    border-left-style: solid;
+    border-left-color: unset;
+}
+
+.marker .label {
+    position: sticky;
+    top: 4px;
+    bottom: 4px;
+    margin-left: 4px;
+    will-change: transform;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    padding: 4px;
+
+    width: fit-content;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.marker .icon {
+    height: 1.2rem;
+    display: block;
+}
+
+/* phone/tablet: include labels in main column */
+@media (max-width: 900px) {
+    .marker-box {
+        width: min-content;
+    }
+
+    .marker {
+        position: relative;
+        margin-top: calc(-1 * (var(--bottom) - var(--top)));
+        /* the margin causes the markers to move up by their height, so move them back the same amount */
+        top: var(--bottom);
+    }
+}
+
+/* phone: put labels on the vertical bars */
+@media (max-width: 600px) {
+    .marker {
+        margin-left: 0;
+    }
+
+    .marker.spooky {
+        border-left: unset;
+        background-color: orange;
+    }
+
+    .marker.fishing {
+        border-left: unset;
+        background-color: #80c2dd;
+    }
+
+    .marker.overlap {
+        border-left: unset;
+        border-image: none;
+        background-image: url("./assets/marker-stripes.svg");
+        background-repeat: repeat;
+    }
+
+    .marker .label {
+        background: none;
+        border-radius: unset;
+        margin-left: 0;
+        writing-mode: vertical-lr;
+        padding: 1px;
+        width: 1rem;
+        text-shadow: -1px 1px #3f3f3f;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .marker .icon {
+        display: none;
+    }
+}

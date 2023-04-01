@@ -1,0 +1,38 @@
+#toolbar {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    background-color: #2f2f2f;
+    padding: .75rem;
+    border-radius: 8px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+
+    button {
+        background-color: #4f4f4f;
+        color: white;
+        font: inherit;
+        border-radius: 4px;
+
+        border: 2px solid #8f8f8f;
+        cursor: pointer;
+        padding: 6px;
+
+        &:hover {
+            background-color: #575757;
+        }
+
+        &:active {
+            background-color: #5f5f5f;
+        }
+    }
+
+    img {
+        display: block;
+        height: 1.5rem;
+    }
+}
