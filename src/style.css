@@ -2,7 +2,9 @@
     color-scheme: dark;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -42,12 +44,18 @@ body {
     padding-right: 12px;
 }
 
+#header {
+    font-size: larger;
+    margin: 0.5rem;
+}
+
 #loading {
     padding: 6px;
     text-align: center;
 }
 
-#background, #background-overlay {
+#background,
+#background-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -85,7 +93,6 @@ body {
     display: grid;
     place-items: center;
 }
-
 
 .dialog {
     background-color: rgb(57, 59, 63);
